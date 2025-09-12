@@ -30,6 +30,7 @@
   MdePkg/MdePkg.dec
   NetworkPkg/NetworkPkg.dec
   CryptoPkg/CryptoPkg.dec
+  OvmfPkg/OvmfPkg.dec
 
 [Sources]
   TlsDriver.h

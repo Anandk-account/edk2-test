@@ -33,12 +33,17 @@
   #
   # Network definition
   #
-  DEFINE NETWORK_SNP_ENABLE       = FALSE
-  DEFINE NETWORK_IP6_ENABLE       = FALSE
-  DEFINE NETWORK_TLS_ENABLE       = FALSE
-  DEFINE NETWORK_HTTP_BOOT_ENABLE = FALSE
-  DEFINE NETWORK_HTTP_ENABLE      = FALSE
-  DEFINE NETWORK_ISCSI_ENABLE     = FALSE
+  DEFINE NETWORK_ENABLE          =TRUE
+  DEFINE NETWORK_VLAN_ENABLE     =TRUE
+  
+  
+  
+  DEFINE NETWORK_SNP_ENABLE       = TRUE
+  DEFINE NETWORK_IP6_ENABLE       = TRUE
+  DEFINE NETWORK_TLS_ENABLE       = TRUE
+  DEFINE NETWORK_HTTP_BOOT_ENABLE = TRUE
+  DEFINE NETWORK_HTTP_ENABLE      = TRUE
+  DEFINE NETWORK_ISCSI_ENABLE     = TRUE
   DEFINE SECURE_BOOT_ENABLE       = FALSE
 
   #
@@ -303,6 +308,7 @@
   gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut|L"Timeout"|gEfiGlobalVariableGuid|0x0|10
 
 [Components]
+ 
 !if "IA32" in $(ARCH) || "X64" in $(ARCH)
   !if "MSFT" in $(FAMILY) || $(WIN_HOST_BUILD) == TRUE
     ##
@@ -328,6 +334,7 @@
   ##
   #  PEI Phase modules
   ##
+  
   MdeModulePkg/Core/Pei/PeiMain.inf
   MdeModulePkg/Universal/PCD/Pei/Pcd.inf  {
    <LibraryClasses>

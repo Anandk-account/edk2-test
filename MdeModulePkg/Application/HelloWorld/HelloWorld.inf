@@ -22,6 +22,10 @@
   VERSION_STRING                 = 1.0
   ENTRY_POINT                    = UefiMain
 
+
+#ENTRY_POINT                    = ShellCEntryLib
+
+
 #
 #  This flag specifies whether HII resource section is generated into PE image.
 #
@@ -40,11 +44,31 @@
 [Packages]
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
+# ShellPkg/ShellPkg.dec 
 
 [LibraryClasses]
   UefiApplicationEntryPoint
   UefiLib
   PcdLib
+  BaseLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  PrintLib
+  
+  UefiRuntimeServicesTableLib
+  
+
+ # ShellCEntryLib   
+ # ShellLib
+ # ShellCommandLib
+ # BaseLib
+ # BaseMemoryLib
+  
+# UefiShellLib
+
+
+
 
 [FeaturePcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdHelloWorldPrintEnable   ## CONSUMES
@@ -55,3 +79,18 @@
 
 [UserExtensions.TianoCore."ExtraFiles"]
   HelloWorldExtra.uni
+  
+  
+[Protocols]  
+ gEfiUsbIoProtocolGuid   // Add this line to define the protocol GUID 
+  
+ gEfiSerialIoProtocolGuid 
+  
+  
+  
+  
+  
+  
+  
+  
+  

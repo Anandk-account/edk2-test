@@ -22,6 +22,14 @@
 !include MdePkg/MdeLibs.dsc.inc
 
 [LibraryClasses]
+  
+  
+ # ShellCEntryLib|ShellPkg/Library/UefiShellCEntryLib/UefiShellCEntryLib.inf
+ # ShellLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
+ # ShellCommandLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
+  
+  
+  
   #
   # Entry point
   #
@@ -201,6 +209,11 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdInstallAcpiSdtProtocol|TRUE
   gEfiMdeModulePkgTokenSpaceGuid.PcdDevicePathSupportDevicePathFromText|FALSE
   gEfiMdeModulePkgTokenSpaceGuid.PcdDevicePathSupportDevicePathToText|FALSE
+  
+  
+  
+  
+  
 
 [PcdsFixedAtBuild]
   gEfiMdePkgTokenSpaceGuid.PcdDebugPropertyMask|0x0f
@@ -208,6 +221,12 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxSizeNonPopulateCapsule|0x0
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxSizePopulateCapsule|0x0
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxPeiPerformanceLogEntries|28
+  
+  
+ # gEfiShellPkgTokenSpaceGuid.PcdShellLibAutoInitialize|TRUE
+  
+  
+  
 
 [PcdsDynamicExDefault]
   gEfiMdeModulePkgTokenSpaceGuid.PcdRecoveryFileName|L"FVMAIN.FV"

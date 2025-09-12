@@ -36,21 +36,55 @@
 [Packages]
   MdeModulePkg/MdeModulePkg.dec
   MdePkg/MdePkg.dec
+  
+  UefiCpuPkg/UefiCpuPkg.dec      # Add this 
+  
 
 [LibraryClasses]
   UefiBootServicesTableLib
   UefiDriverEntryPoint
   DebugLib
-
-[Protocols]
+  
+  
+  UefiRuntimeServicesTableLib
+  UefiLib
+  PrintLib
+  
+  
+  BaseLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  PcdLib
+  
+  CpuLib 
+  
+  [Protocols]
   gEfiHiiDatabaseProtocolGuid        ## CONSUMES
   gEfiHiiImageExProtocolGuid         ## CONSUMES
   gEfiHiiPackageListProtocolGuid     ## PRODUCES CONSUMES
   gEdkiiPlatformLogoProtocolGuid     ## PRODUCES
 
+
+ gEfiSimpleTextInProtocolGuid        ## CONSUMES
+ gEfiSimpleTextOutProtocolGuid       ## CONSUMES
+ 
+ gEfiSimplePointerProtocolGuid       ## CONSUMES 
+ gEfiGraphicsOutputProtocolGuid      ## SOMETIMES_CONSUMES
+
+
+  gEfiLoadedImageProtocolGuid        ## CONSUMES
+  gEfiUsbIoProtocolGuid              ## CONSUMES
+
+gEfiMpServiceProtocolGuid        # Add this for multi-processor services
+
+
 [Depex]
   gEfiHiiDatabaseProtocolGuid AND
-  gEfiHiiImageExProtocolGuid
+  gEfiHiiImageExProtocolGuid AND  
+  
+  
+  gEfiSimpleTextOutProtocolGuid AND
+  gEfiSimpleTextInProtocolGuid
 
 [UserExtensions.TianoCore."ExtraFiles"]
   LogoDxeExtra.uni

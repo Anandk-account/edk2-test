@@ -44,12 +44,17 @@
   #
   # Network definition
   #
-  DEFINE NETWORK_TLS_ENABLE             = FALSE
-  DEFINE NETWORK_IP6_ENABLE             = FALSE
+  DEFINE NETWORK_TLS_ENABLE             = TRUE
+  DEFINE NETWORK_IP6_ENABLE             = TRUE
   DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE
   DEFINE NETWORK_ALLOW_HTTP_CONNECTIONS = TRUE
   DEFINE NETWORK_ISCSI_ENABLE           = TRUE
-
+  DEFINE NETWORK_VLAN_ENABLE            = TRUE
+  DEFINE NETWORK_IPSEC_ENABLE           = TRUE
+  DEFINE NETWORK_ENABLE                 = TRUE 
+  
+  
+  
 !include NetworkPkg/NetworkDefines.dsc.inc
 
   #
@@ -73,10 +78,14 @@
 !ifdef $(FD_SIZE_4MB)
   DEFINE FD_SIZE_IN_KB           = 4096
 !else
-  DEFINE FD_SIZE_IN_KB           = 4096
+DEFINE FD_SIZE_IN_KB           = 4096
 !endif
+!endif 
 !endif
-!endif
+
+
+
+
 
   #
   # Define the FILE_GUID of CpuMpPei/CpuDxe for unique-processor version.
@@ -512,6 +521,9 @@
 !endif
   gEfiMdePkgTokenSpaceGuid.PcdMaximumGuidedExtractHandler|0x10
   gEfiMdePkgTokenSpaceGuid.PcdMaximumLinkedListLength|0
+  
+  
+  
 !if ($(FD_SIZE_IN_KB) == 1024) || ($(FD_SIZE_IN_KB) == 2048)
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxAuthVariableSize|0x2800
@@ -527,7 +539,26 @@
   # match PcdFlashNvStorageVariableSize purely for convenience
   gEfiMdeModulePkgTokenSpaceGuid.PcdVariableStoreSize|0x40000
 !endif
-!endif
+!endif 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 !if $(NETWORK_TLS_ENABLE) == TRUE
   gEfiMdeModulePkgTokenSpaceGuid.PcdVariableStoreSize|0x80000
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVolatileVariableSize|0x40000
@@ -708,8 +739,24 @@
 ################################################################################
 [Components]
   OvmfPkg/ResetVector/ResetVector.inf
+  
+  NetworkPkg/Ip6Dxe/Ip6Dxe.inf
+  NetworkPkg/Udp6Dxe/Udp6Dxe.inf
+  NetworkPkg/TcpDxe/TcpDxe.inf
+  NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
+  NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
+  NetworkPkg/IScsiDxe/IScsiDxe.inf
+  NetworkPkg/DnsDxe/DnsDxe.inf
+  NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
+  NetworkPkg/TlsAuthConfigDxe/TlsAuthConfigDxe.inf
+  NetworkPkg/TlsDxe/TlsDxe.inf
 
-  #
+ 
+  
+  
+  
+  
+ #
   # SEC Phase modules
   #
   OvmfPkg/Sec/SecMain.inf {

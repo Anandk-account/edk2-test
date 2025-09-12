@@ -22,6 +22,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   NetworkPkg/NetworkPkg.dec
+  
 
 [Sources]
   HttpUtilitiesDxe.h

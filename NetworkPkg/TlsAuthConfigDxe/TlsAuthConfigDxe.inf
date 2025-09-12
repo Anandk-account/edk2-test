@@ -25,6 +25,7 @@
   MdePkg/MdePkg.dec
   MdeModulePkg/MdeModulePkg.dec
   NetworkPkg/NetworkPkg.dec
+  OvmfPkg/OvmfPkg.dec
 
 [Sources]
   TlsAuthConfigImpl.c

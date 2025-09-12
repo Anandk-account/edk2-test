@@ -21,6 +21,7 @@
 [Packages]
   MdePkg/MdePkg.dec
   NetworkPkg/NetworkPkg.dec
+  OvmfPkg/OvmfPkg.dec
 
 [Sources]
   ComponentName.c
