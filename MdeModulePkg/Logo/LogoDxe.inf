@@ -58,6 +58,9 @@
   
   CpuLib 
   
+   DevicePathLib
+   
+  
   [Protocols]
   gEfiHiiDatabaseProtocolGuid        ## CONSUMES
   gEfiHiiImageExProtocolGuid         ## CONSUMES
@@ -76,6 +79,23 @@
   gEfiUsbIoProtocolGuid              ## CONSUMES
 
 gEfiMpServiceProtocolGuid        # Add this for multi-processor services
+
+ gEfiSmbiosProtocolGuid                     ## CONSUMES
+  gEfiCpuIo2ProtocolGuid                     ## CONSUMES
+  gEfiCpuArchProtocolGuid                    ## CONSUMES
+   gEfiPciRootBridgeIoProtocolGuid               ## CONSUMES
+
+ gEfiBlockIoProtocolGuid                   # ADD THIS (for USB boot)
+  gEfiDiskIoProtocolGuid                    # ADD THIS (for USB boot)
+  
+  gEfiSimpleFileSystemProtocolGuid     ## CONSUMED - Shell launch ke liye
+  gEfiLoadedImageProtocolGuid          ## CONSUMED - Shell launch ke liye
+
+
+[Guids]
+  gEfiGlobalVariableGuid                     ## CONSUMES
+  gEfiFileInfoGuid                           ## CONSUMES
+
 
 
 [Depex]
