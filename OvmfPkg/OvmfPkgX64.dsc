@@ -42,26 +42,40 @@
 !include OvmfPkg/OvmfTpmDefines.dsc.inc
 
   #
+  # Shell can be useful for debugging but should not be enabled for production          # add this line
+  #
+  DEFINE BUILD_SHELL             = TRUE
+
+  #
   # Network definition
   #
-  DEFINE NETWORK_TLS_ENABLE             = TRUE
-  DEFINE NETWORK_IP6_ENABLE             = TRUE
-  DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE
+  DEFINE NETWORK_TLS_ENABLE             = TRUE         # original
+  DEFINE NETWORK_IP6_ENABLE             = TRUE         # original
+
+  
+
+#  DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE         # original
+  DEFINE NETWORK_HTTP_BOOT_ENABLE       = TRUE            # modified
   DEFINE NETWORK_ALLOW_HTTP_CONNECTIONS = TRUE
   DEFINE NETWORK_ISCSI_ENABLE           = TRUE
   DEFINE NETWORK_VLAN_ENABLE            = TRUE
-  DEFINE NETWORK_IPSEC_ENABLE           = TRUE
+#  DEFINE NETWORK_IPSEC_ENABLE           = TRUE
   DEFINE NETWORK_ENABLE                 = TRUE 
   
-  
+  DEFINE NETWORK_HTTP_ENABLE            = TRUE       # ✅ ADD this line
+  DEFINE NETWORK_SNP_ENABLE             = TRUE       # ✅ ADD this line
+  DEFINE NETWORK_IP4_ENABLE             = TRUE       # ✅ ADD this line
   
 !include NetworkPkg/NetworkDefines.dsc.inc
 
   #
   # Device drivers
   #
-  DEFINE PVSCSI_ENABLE           = TRUE
-  DEFINE MPT_SCSI_ENABLE         = TRUE
+#  DEFINE PVSCSI_ENABLE           = TRUE
+#  DEFINE MPT_SCSI_ENABLE         = TRUE
+  
+  DEFINE PVSCSI_ENABLE           = FALSE                     #modified
+  DEFINE MPT_SCSI_ENABLE         = FALSE                     #modified
   DEFINE LSI_SCSI_ENABLE         = FALSE
 
   #
@@ -740,16 +754,16 @@ DEFINE FD_SIZE_IN_KB           = 4096
 [Components]
   OvmfPkg/ResetVector/ResetVector.inf
   
-  NetworkPkg/Ip6Dxe/Ip6Dxe.inf
-  NetworkPkg/Udp6Dxe/Udp6Dxe.inf
-  NetworkPkg/TcpDxe/TcpDxe.inf
-  NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
-  NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
-  NetworkPkg/IScsiDxe/IScsiDxe.inf
-  NetworkPkg/DnsDxe/DnsDxe.inf
-  NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
-  NetworkPkg/TlsAuthConfigDxe/TlsAuthConfigDxe.inf
-  NetworkPkg/TlsDxe/TlsDxe.inf
+#  NetworkPkg/Ip6Dxe/Ip6Dxe.inf
+#  NetworkPkg/Udp6Dxe/Udp6Dxe.inf
+#  NetworkPkg/TcpDxe/TcpDxe.inf
+#  NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
+#  NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
+#  NetworkPkg/IScsiDxe/IScsiDxe.inf
+#  NetworkPkg/DnsDxe/DnsDxe.inf
+#  NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
+#  NetworkPkg/TlsAuthConfigDxe/TlsAuthConfigDxe.inf
+#  NetworkPkg/TlsDxe/TlsDxe.inf
 
  
   
@@ -999,7 +1013,7 @@ DEFINE FD_SIZE_IN_KB           = 4096
   #
   # Network Support
   #
-!include NetworkPkg/NetworkComponents.dsc.inc
+  !include NetworkPkg/NetworkComponents.dsc.inc                         
 
   NetworkPkg/UefiPxeBcDxe/UefiPxeBcDxe.inf {
     <LibraryClasses>

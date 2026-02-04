@@ -1,0 +1,26 @@
+Build environment: Linux-6.14.0-37-generic-x86_64-with-glibc2.39
+Build start time: 10:09:17, Jan.08 2026
+
+WORKSPACE        = /home/anand/anand_new_edk2/fw/edk2-ws/edk2
+EDK_TOOLS_PATH   = /home/anand/anand_new_edk2/fw/edk2-ws/edk2/BaseTools
+CONF_PATH        = /home/anand/anand_new_edk2/fw/edk2-ws/edk2/Conf
+PYTHON_COMMAND   = /usr/bin/python3
+
+
+Processing meta-data .
+Architecture(s)  = X64
+Build target     = DEBUG
+Toolchain        = GCC5
+
+Active Platform          = /home/anand/anand_new_edk2/fw/edk2-ws/edk2/OvmfPkg/OvmfPkgX64.dsc
+.
+
+build.py...
+ : error F001: Invalid dependency expression: missing operand before close parentheses
+	Near AND
+ 
+
+- Failed -
+Build end time: 10:09:18, Jan.08 2026
+Build total time: 00:00:02
+

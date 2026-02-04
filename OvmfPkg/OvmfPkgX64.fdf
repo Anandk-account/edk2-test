@@ -472,16 +472,16 @@ FILE FV_IMAGE = 9E21FD93-9C72-4c15-8C4B-E77F1DB2D792 {
      SECTION FV_IMAGE = DXEFV
    }
  }
-INF NetworkPkg/Ip6Dxe/Ip6Dxe.inf
-INF NetworkPkg/Udp6Dxe/Udp6Dxe.inf
-INF NetworkPkg/TcpDxe/TcpDxe.inf
-INF NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
-INF NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
-INF NetworkPkg/IScsiDxe/IScsiDxe.inf
-INF NetworkPkg/DnsDxe/DnsDxe.inf
-INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
-INF NetworkPkg/TlsAuthConfigDxe/TlsAuthConfigDxe.inf
-INF NetworkPkg/TlsDxe/TlsDxe.inf
+# INF NetworkPkg/Ip6Dxe/Ip6Dxe.inf
+# INF NetworkPkg/Udp6Dxe/Udp6Dxe.inf
+# INF NetworkPkg/TcpDxe/TcpDxe.inf
+# INF NetworkPkg/Dhcp6Dxe/Dhcp6Dxe.inf
+# INF NetworkPkg/Mtftp6Dxe/Mtftp6Dxe.inf
+# INF NetworkPkg/IScsiDxe/IScsiDxe.inf
+# INF NetworkPkg/DnsDxe/DnsDxe.inf
+# INF NetworkPkg/VlanConfigDxe/VlanConfigDxe.inf
+# INF NetworkPkg/TlsAuthConfigDxe/TlsAuthConfigDxe.inf
+# INF NetworkPkg/TlsDxe/TlsDxe.inf
 
 
 

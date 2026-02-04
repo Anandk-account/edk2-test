@@ -37,7 +37,8 @@
   MdeModulePkg/MdeModulePkg.dec
   MdePkg/MdePkg.dec
   
-  UefiCpuPkg/UefiCpuPkg.dec      # Add this 
+  UefiCpuPkg/UefiCpuPkg.dec      # Added
+  NetworkPkg/NetworkPkg.dec              # Added for HTTP Boot 
   
 
 [LibraryClasses]
@@ -58,45 +59,101 @@
   
   CpuLib 
   
-   DevicePathLib
-   
+  DevicePathLib
+  
+ # Network Libraries (for HTTP Boot)
+  NetLib                                 # ADD THIS - Network utility functions
+  HttpLib                                # ADD THIS - HTTP parsing functions
+  DpcLib                                 # ADD THIS - Deferred Procedure Call
+  IpIoLib                                # ADD THIS - IP I/O operations
   
   [Protocols]
   gEfiHiiDatabaseProtocolGuid        ## CONSUMES
   gEfiHiiImageExProtocolGuid         ## CONSUMES
   gEfiHiiPackageListProtocolGuid     ## PRODUCES CONSUMES
   gEdkiiPlatformLogoProtocolGuid     ## PRODUCES
-
-
- gEfiSimpleTextInProtocolGuid        ## CONSUMES
- gEfiSimpleTextOutProtocolGuid       ## CONSUMES
- 
- gEfiSimplePointerProtocolGuid       ## CONSUMES 
- gEfiGraphicsOutputProtocolGuid      ## SOMETIMES_CONSUMES
-
-
+  
+  
+  gEfiSimpleTextInProtocolGuid        ## CONSUMES
+  gEfiSimpleTextOutProtocolGuid       ## CONSUMES
+  
+  gEfiSimplePointerProtocolGuid       ## CONSUMES 
+  gEfiGraphicsOutputProtocolGuid      ## SOMETIMES_CONSUMES
+  
+  
   gEfiLoadedImageProtocolGuid        ## CONSUMES
   gEfiUsbIoProtocolGuid              ## CONSUMES
-
-gEfiMpServiceProtocolGuid        # Add this for multi-processor services
-
- gEfiSmbiosProtocolGuid                     ## CONSUMES
+  
+  gEfiMpServiceProtocolGuid        # Add this for multi-processor services
+  
+  gEfiSmbiosProtocolGuid                     ## CONSUMES
   gEfiCpuIo2ProtocolGuid                     ## CONSUMES
   gEfiCpuArchProtocolGuid                    ## CONSUMES
-   gEfiPciRootBridgeIoProtocolGuid               ## CONSUMES
-
- gEfiBlockIoProtocolGuid                   # ADD THIS (for USB boot)
+  gEfiPciRootBridgeIoProtocolGuid               ## CONSUMES
+  
+  gEfiBlockIoProtocolGuid                   # ADD THIS (for USB boot)
   gEfiDiskIoProtocolGuid                    # ADD THIS (for USB boot)
   
   gEfiSimpleFileSystemProtocolGuid     ## CONSUMED - Shell launch ke liye
   gEfiLoadedImageProtocolGuid          ## CONSUMED - Shell launch ke liye
-
-
+  
+  
+ # Network Protocols - ADDED FOR NETWORK BOOT
+  gEfiSimpleNetworkProtocolGuid                 ## SOMETIMES_CONSUMES
+  gEfiNetworkInterfaceIdentifierProtocolGuid    ## SOMETIMES_CONSUMES
+  gEfiManagedNetworkProtocolGuid                ## SOMETIMES_CONSUMES
+  gEfiPxeBaseCodeProtocolGuid                   ## SOMETIMES_CONSUMES
+  
+  
+  
+  
+ # TCP/IP Stack Protocols
+  gEfiIp4Config2ProtocolGuid                    ## SOMETIMES_CONSUMES
+  gEfiIp4ProtocolGuid                           ## SOMETIMES_CONSUMES - ADD THIS
+  gEfiIp4ServiceBindingProtocolGuid             ## SOMETIMES_CONSUMES - ADD THIS
+  gEfiIp6ProtocolGuid                           ## SOMETIMES_CONSUMES - ADD THIS (IPv6 support)
+  gEfiIp6ServiceBindingProtocolGuid             ## SOMETIMES_CONSUMES - ADD THIS
+  gEfiIp6ConfigProtocolGuid                     ## SOMETIMES_CONSUMES - ADD THIS
+  
+  
+ # DHCP Protocols  
+  gEfiDhcp4ProtocolGuid                         ## SOMETIMES_CONSUMES
+  gEfiDhcp4ServiceBindingProtocolGuid           ## SOMETIMES_CONSUMES - ADD THIS
+  gEfiDhcp6ProtocolGuid                         ## SOMETIMES_CONSUMES - ADD THIS (IPv6 DHCP)
+  gEfiDhcp6ServiceBindingProtocolGuid           ## SOMETIMES_CONSUMES - ADD THIS
+  
+  
+ # HTTP Protocols - 
+  gEfiHttpProtocolGuid                          ## SOMETIMES_CONSUMES - ADD THIS
+  gEfiHttpServiceBindingProtocolGuid            ## SOMETIMES_CONSUMES - ADD THIS
+  gEfiHttpUtilitiesProtocolGuid                 ## SOMETIMES_CONSUMES - ADD THIS
+  
+  gEfiLoadFileProtocolGuid                      ## CONSUMES
+  gEfiLoadFile2ProtocolGuid                    ## CONSUMES
+  gEfiDevicePathProtocolGuid                    ## CONSUMES
+  
+  
+ # HTTP Boot Protocol - MAIN PROTOCOL
+ # gEfiHttpBootProtocolGuid                      ## SOMETIMES_CONSUMES - ADD THIS (MAIN!)
+  gEfiHttpBootCallbackProtocolGuid              ## SOMETIMES_CONSUMES - ADD THIS
+  
+  
+ # DNS Protocols (for hostname resolution)
+  gEfiDns4ProtocolGuid                          ## SOMETIMES_CONSUMES
+  gEfiDns4ServiceBindingProtocolGuid            ## SOMETIMES_CONSUMES
+  gEfiDns6ProtocolGuid                          ## SOMETIMES_CONSUMES
+  gEfiDns6ServiceBindingProtocolGuid            ## SOMETIMES_CONSUMES 
+  
+  
 [Guids]
   gEfiGlobalVariableGuid                     ## CONSUMES
   gEfiFileInfoGuid                           ## CONSUMES
-
-
+  
+  
+  gEfiAcpiTableGuid                          ## CONSUMES
+  gEfiAcpi10TableGuid                        ## CONSUMES
+  
+  gEfiVirtualDiskGuid                        ## CONSUMES - ADD THIS (HTTP boot image)
 
 [Depex]
   gEfiHiiDatabaseProtocolGuid AND
@@ -104,7 +161,12 @@ gEfiMpServiceProtocolGuid        # Add this for multi-processor services
   
   
   gEfiSimpleTextOutProtocolGuid AND
-  gEfiSimpleTextInProtocolGuid
-
+  gEfiSimpleTextInProtocolGuid  
+  
+  
+#  gEfiSimpleNetworkProtocolGuid
+  
+  
+  
 [UserExtensions.TianoCore."ExtraFiles"]
   LogoDxeExtra.uni
